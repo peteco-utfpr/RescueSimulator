@@ -18,15 +18,14 @@ Faz a instanciação das demais classes. Contém o loop de controle principal (o
 **Model**
 É o ambiente onde o agente está situado. No caso do RobôFun, o ambiente é um labirinto com paredes e vítimas. Quando o agente executa uma ação, normalmente uma mudança de estado se produz no model. Por exemplo, se o agente se desloca para uma nova posição, isto deve refletir no model que atualizará a informação da posição do agente. Em teoria, o agente somente acessa os atributos desta classe por meio dos seus sensores e age por meio dos seus atuadores. É interessante manter esta independência para que seja fiel a situação do agente não ter acesso a todas as variáveis do ambiente sem que esteja equipado para isto (ambiente parcialmente observável).
 
-**<Agent>**
+**Agent**
   Exemplos disponíveis no projeto: agentRnd.py
 
 O agente atua no ambiente e o modifica, portanto, necessita de uma referência ao mesmo:
-self.model
+_self.model_
 
-No agente, criamos uma instância do problema a ser solucionado, o que denominamos de formulação do problema – e.g. um problema de busca de caminho em um mapa (ver a classe Problem).
-O método de deliberação é o procedimento no qual o agente decide qual é a próxima ação que vai executar no ambiente:
-deliberate(self)
+No agente, criamos uma instância do problema a ser solucionado, o que denominamos de formulação do problema – e.g. um problema de busca de caminho em um mapa (ver a classe Problem). O método de deliberação é o procedimento no qual o agente decide qual é a próxima ação que vai executar no ambiente:
+_deliberate(self)_
 
 Na versão atual, um agente pode perseguir vários objetivos de forma sequencial. Para cada objetivo, possui um plano possivelmente construído por algoritmos diferentes ou porque tem uma série de objetivos a perseguir. 
 Por exemplo, um agente pode ter:
@@ -38,16 +37,14 @@ Os planos a serem executados por um agente ficam armazenados em uma biblioteca d
 A metáfora dos planos é utilizada também para estratégias de busca on-line. Neste caso, o plano retornará uma ação por vez quando chamado a cada ciclo de raciocínio do agente.
 Se a estratégia de busca for off-line e o ambiente for estático e determinístico, o plano é calculado somente uma vez. A cada deliberação, basta o agente pegar a próxima ação a ser executada até o seu término quando terá atingido o objetivo.
 
-**<Plan>**
+**Plan**
 Exemplos disponíveis no projeto: RandomPlan.py
 Um plano é uma sequência de ações. Se o agente está em um ambiente estático e determinístico e tem o tempo que necessitar para planejar então pode se utilizar de uma estratégia de busca cega ou informada e calcular todas as ações necessárias para sair do estado inicial e atingir o estado objetivo.
 Se adicionarmos uma limitação de tempo, ou seja, o agente tem que intercalar deliberação e ação, então estamos no caso dos algoritmos on-line embora o ambiente possa ainda ser estático e determinístico. Neste caso, o plano será uma ação, ou seja, o agente computa apenas a próxima ação. 
 
  **Problem**
 Contém a modelagem ou a formulação do problema adaptado ao problema de trajetórias em labirintos. Portanto, um estado corresponde a posição atual do agente dada por coordenadas (row, col). A classe State define métodos para instanciação e atribuição de valores a um estado. Na classe Problem, chamamos os métodos para definir o estado inicial, objetivo e um teste de objetivo.
-Estado inicial:
-defInitialState(self, row, col)
-Estado objetivo:
-defGoalState(self, row, col)
+Estado inicial: _defInitialState(self, row, col)_
+Estado objetivo: _defGoalState(self, row, col)_
 Teste de objetivo: permite adicionar outros critérios além da posição do agente, por exemplo, estar em uma posição com algum objeto específico.
-goalTest(self, currentState)
+_goalTest(self, currentState)_

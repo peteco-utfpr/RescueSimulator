@@ -1,0 +1,18 @@
+(define (problem pb3)
+  (:domain hanoi)
+
+
+  (:objects truck drop garage true false )
+
+  (:init
+    ; Discs are smaller than pegs
+    (carregando false) 
+    (at garage)
+    (ajudado false)
+  )
+
+  (:goal (and
+    (ajudado true)
+    (at garage)
+  ))
+)

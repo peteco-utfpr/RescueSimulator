@@ -19,7 +19,7 @@ from planner import Planner
 
 ## Classe que define o Agente
 class AgentRnd:
-    def __init__(self, model):
+    def __init__(self, model, configDict):
         """ 
         Construtor do agente random
         @param model referencia o ambiente onde o agente estah situado
@@ -27,6 +27,10 @@ class AgentRnd:
        
         self.model = model
 
+        ## Obtem o tempo que tem para executar
+        self.tl = configDict["Tl"]
+        print("Tempo disponivel: ", self.tl)
+        
         ## Pega o tipo de mesh, que está no model (influência na movimentação)
         self.mesh = self.model.mesh
 
@@ -98,6 +102,10 @@ class AgentRnd:
         ## Funcionou ou nao, vou somar o custo da acao com o total 
         self.costAll += self.prob.getActionCost(self.previousAction)
         print ("Custo até o momento (com a ação escolhida):", self.costAll) 
+
+        ## consome o tempo gasto
+        self.tl -= self.prob.getActionCost(self.previousAction)
+        print("Tempo disponivel: ", self.tl)
 
         ## Verifica se atingiu o estado objetivo
         ## Poderia ser outra condição, como atingiu o custo máximo de operação

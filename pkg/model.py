@@ -165,6 +165,15 @@ class Model:
 
         return []
 
+    def getDifficultyOfAcess(self, victimId):
+        """ retorna os dados de dificuldade de acesso à vítima identificada pelo id
+        @param victimId é a posição da vítima dentro do vetor de sinais vitais
+        @return a lista de sinais vitais ou uma lista vazia caso a vítima nao exista
+        """
+        if victimId < self.getNumberOfVictims():
+            return self.maze.diffAccess[victimId - 1]
+        return []
+
     def isThereVictim(self):
         """ retorna o id da vitima que está na posicao corrente do agente.
         O id é um número sequencial de 1 em diante atribuído pela ordem de aparição no arquivo ambiente.txt (ver maze.py)

@@ -32,6 +32,10 @@ class Maze:
         # onde o índice de uma sublista corresponde ao id da vítima (ver self.victims)
         self.vitalSignals = []
 
+        # Lista que contem os dados de dificuldade de acesso a cada uma das vitimas. É uma lista composta por
+        # sublistas onde o índice de uma sublista corresponde ao ide da vítima (anda junto com self.victims)
+        self.diffAccess = []
+
         self.numberOfVictims = 0 # conta contas vitimas foram colocadas no ambiente 
 
         ## A depender do tipo de malha, os parametros mudam
@@ -59,8 +63,10 @@ class Maze:
 
     def updateWalls(self):
        
-        ## Metodo que atualiza a lista dos objetos que estao no labirinto
-        arq = open(os.path.join("config_data" ,"sinaisvitais.txt"),"r")
+        ## Metodo que atualiza a lista dos objetos (vitimas) que estao no labirinto
+        vs_file = open(os.path.join("config_data" ,"sinaisvitais.txt"),"r")
+        diff_file = open(os.path.join("config_data" ,"difacesso.txt"),"r")
+
 
         ## Pega a matriz com todos os lugares (seja quadrado ou triangulo)
         aux = self.board.getListPlaces()
@@ -75,15 +81,24 @@ class Maze:
                     self.numberOfVictims = self.numberOfVictims + 1
                     self.victims[pos[0]][pos[1]] = self.numberOfVictims
                     
-                    line = arq.readline()
-                    if line:
-                        values = [float(signal) for signal in line.split(" ")]
+                    vs_line = vs_file.readline()
+                    if vs_line:
+                        values = [float(signal) for signal in vs_line.split(" ")]
                         print("sinais vitais da vitima em (", pos[0], ",", pos[1], ") : ", values)
                         self.vitalSignals.append([])
                         self.vitalSignals[self.numberOfVictims-1].append(values)
                     else:
                         print("!!! warning: número de vítimas do ambiente maior do que número de sinais vitais")
                 
+                    diff_line = diff_file.readline()
+                    if diff_line:
+                        values = [float(signal) for signal in diff_line.split(" ")]
+                        print("dif. de acesso a vitima em (", pos[0], ",", pos[1], ") : ", values)
+                        self.diffAccess.append([])
+                        self.diffAccess[self.numberOfVictims-1].append(values)
+                    else:
+                        print("!!! warning: número de vítimas do ambiente maior do que número de dif. de acesso")
+
     ## Metodo que retorna a instancia criada da mesh
     def getBoard(self):
         return self.board

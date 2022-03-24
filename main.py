@@ -52,7 +52,7 @@ def main():
     model.draw()
 
     # Cria um agente
-    agent = AgentRnd(model)
+    agent = AgentRnd(model,configDict)
 
     ## Ciclo de raciocínio do agente
     agent.deliberate()

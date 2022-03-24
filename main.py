@@ -3,7 +3,7 @@ import os
 import time
 
 ## Importa as classes que serao usadas
-sys.path.append('pkg')
+sys.path.append(os.path.join("pkg"))
 from model import Model
 from agentRnd import AgentRnd
 

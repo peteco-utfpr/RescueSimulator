@@ -3,6 +3,7 @@
 ### Agente que fixa um objetivo aleatório e anda aleatoriamente pelo labirinto até encontrá-lo.
 ### Executa raciocíni on-line: percebe --> [delibera] --> executa ação --> percebe --> ...
 import sys
+import os
 
 ## Importa Classes necessarias para o funcionamento
 from model import Model

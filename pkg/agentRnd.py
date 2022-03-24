@@ -14,7 +14,7 @@ from random import randint
 from randomPlan import RandomPlan
 
 ##Importa o Planner
-sys.path.append('pkg\planner')
+sys.path.append('pkg/planner')
 from planner import Planner
 
 ## Classe que define o Agente

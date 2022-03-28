@@ -2,7 +2,7 @@
 Projeto em Python que simula vítimas dispersas em um ambiente com paredes
 
 **Autores**
-Luan Carlos Klein & Cesar Augusto Tacla
+Luan Carlos Klein & Prof. Cesar Augusto Tacla
 UTFPR, Câmpus Curitiba, grupo PET ENGENHARIA DE COMPUTAÇÃO
 
 **RESCUE SIMULATOR**
